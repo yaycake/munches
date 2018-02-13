@@ -1,4 +1,4 @@
-class MunchesPolicy < ApplicationPolicy
+class MenuPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
