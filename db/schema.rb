@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213055033) do
+ActiveRecord::Schema.define(version: 20180213101517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,9 +47,11 @@ ActiveRecord::Schema.define(version: 20180213055033) do
     t.text     "description"
     t.text     "category_photo"
     t.integer  "menu_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "menu_subcategory_id"
     t.index ["menu_id"], name: "index_menu_categories_on_menu_id", using: :btree
+    t.index ["menu_subcategory_id"], name: "index_menu_categories_on_menu_subcategory_id", using: :btree
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -70,8 +72,10 @@ ActiveRecord::Schema.define(version: 20180213055033) do
   create_table "menu_subcategories", force: :cascade do |t|
     t.text     "name"
     t.integer  "menu_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "menu_category_id"
+    t.index ["menu_category_id"], name: "index_menu_subcategories_on_menu_category_id", using: :btree
     t.index ["menu_id"], name: "index_menu_subcategories_on_menu_id", using: :btree
   end
 
@@ -83,6 +87,8 @@ ActiveRecord::Schema.define(version: 20180213055033) do
     t.string   "daysAvailable"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
   create_table "order_payments", force: :cascade do |t|
@@ -192,11 +198,14 @@ ActiveRecord::Schema.define(version: 20180213055033) do
   end
 
   add_foreign_key "addresses", "customers"
+  add_foreign_key "menu_categories", "menu_subcategories"
   add_foreign_key "menu_categories", "menus"
   add_foreign_key "menu_items", "menu_categories"
   add_foreign_key "menu_items", "menu_subcategories"
   add_foreign_key "menu_items", "menus"
+  add_foreign_key "menu_subcategories", "menu_categories"
   add_foreign_key "menu_subcategories", "menus"
+  add_foreign_key "menus", "users"
   add_foreign_key "order_payments", "discounts"
   add_foreign_key "order_payments", "payment_methods"
   add_foreign_key "order_payments", "payment_statuses"

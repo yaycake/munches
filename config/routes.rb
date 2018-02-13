@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :orders, only: [ :index ]
+      resources :orders, only: [ :index, :show ]
+      resources :menus, only: [ :index, :show ]
+      resources :menu_categories, only: [ :index, :show ]
+      resources :menu_subcategories, only: [ :index, :show ]
     end
-      namespace :v1 do
-      resources :menus, only: [ :index ]
-    end
+
   end
 
 end
