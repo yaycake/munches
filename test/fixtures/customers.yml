@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  wechat_id: MyString
+  address: one
+  phone_number: one
+
+two:
+  first_name: MyString
+  last_name: MyString
+  wechat_id: MyString
+  address: two
+  phone_number: two

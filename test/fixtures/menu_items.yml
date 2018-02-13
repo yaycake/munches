@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  menu_subcategory: one
+  menu_category: one
+  prices: one
+  menu: one
+  can_combo: 
+  in_stock: 
+
+two:
+  name: MyString
+  description: MyString
+  menu_subcategory: two
+  menu_category: two
+  prices: two
+  menu: two
+  can_combo: 
+  in_stock: 

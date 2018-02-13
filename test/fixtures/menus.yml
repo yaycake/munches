@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  description: MyText
+  timeAvailable: 2018-02-13 13:23:23
+  timeExpire: 2018-02-13 13:23:23
+  daysAvailable: MyString
+
+two:
+  name: MyText
+  description: MyText
+  timeAvailable: 2018-02-13 13:23:23
+  timeExpire: 2018-02-13 13:23:23
+  daysAvailable: MyString

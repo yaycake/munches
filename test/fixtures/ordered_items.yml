@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_item: one
+  is_combo: 
+  combo_side: one
+  combo_drink: one
+  quantity: 1
+  subtotal: 1
+  order: one
+
+two:
+  menu_item: two
+  is_combo: 
+  combo_side: two
+  combo_drink: two
+  quantity: 1
+  subtotal: 1
+  order: two

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_item: one
+  price_jr: 1
+  price_regular: 1
+  price_combo: 1
+  price_combo_XL: 1
+  price_special: 1
+
+two:
+  menu_item: two
+  price_jr: 1
+  price_regular: 1
+  price_combo: 1
+  price_combo_XL: 1
+  price_special: 1
