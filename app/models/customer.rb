@@ -1,4 +1,4 @@
 class Customer < ApplicationRecord
-  belongs_to :address
-  belongs_to :phone_number
+  has_many :addresses
+  has_many :phone_numbers
 end
