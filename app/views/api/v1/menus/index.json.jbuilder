@@ -1,9 +1,3 @@
-
-# json.array! @menus do |menu|
-#   json.extract! menu, :id, :name, :description, :timeAvailable, :timeExpire, :daysAvailable, :user, :menu_categories, :menu_subcategories
-# end
-
-
 json.array! @menus do |menu|
 
   json.extract! menu, :id, :name, :description, :timeAvailable, :timeExpire, :daysAvailable, :user
@@ -12,13 +6,13 @@ json.array! @menus do |menu|
     json.extract! menu_category, :name, :description
 
     json.menu_subcategories menu_category.menu_subcategories do |menu_subcategory|
-    json.extract! menu_subcategory, :id, :name
+      json.extract! menu_subcategory, :id, :name
+
+        json.menu_items menu_subcategory.menu_items do |menu_item|
+          json.extract! menu_item, :id, :name, :description, :can_combo, :price
+    end
+
   end
-  end
-
-
-
-
 
 end
-
+end

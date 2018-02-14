@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214085602) do
+ActiveRecord::Schema.define(version: 20180214094206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,9 +64,11 @@ ActiveRecord::Schema.define(version: 20180214085602) do
     t.string   "in_stock"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "price_id"
     t.index ["menu_category_id"], name: "index_menu_items_on_menu_category_id", using: :btree
     t.index ["menu_id"], name: "index_menu_items_on_menu_id", using: :btree
     t.index ["menu_subcategory_id"], name: "index_menu_items_on_menu_subcategory_id", using: :btree
+    t.index ["price_id"], name: "index_menu_items_on_price_id", using: :btree
   end
 
   create_table "menu_subcategories", force: :cascade do |t|
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 20180214085602) do
   add_foreign_key "menu_items", "menu_categories"
   add_foreign_key "menu_items", "menu_subcategories"
   add_foreign_key "menu_items", "menus"
+  add_foreign_key "menu_items", "prices"
   add_foreign_key "menu_subcategories", "menu_categories"
   add_foreign_key "menu_subcategories", "menus"
   add_foreign_key "menus", "menu_categories"
