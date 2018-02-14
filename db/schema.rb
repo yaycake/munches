@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213101517) do
+ActiveRecord::Schema.define(version: 20180214085602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,9 +85,13 @@ ActiveRecord::Schema.define(version: 20180213101517) do
     t.datetime "timeAvailable"
     t.datetime "timeExpire"
     t.string   "daysAvailable"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "user_id"
+    t.integer  "menu_category_id"
+    t.integer  "menu_subcategory_id"
+    t.index ["menu_category_id"], name: "index_menus_on_menu_category_id", using: :btree
+    t.index ["menu_subcategory_id"], name: "index_menus_on_menu_subcategory_id", using: :btree
     t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
@@ -205,6 +209,8 @@ ActiveRecord::Schema.define(version: 20180213101517) do
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menu_subcategories", "menu_categories"
   add_foreign_key "menu_subcategories", "menus"
+  add_foreign_key "menus", "menu_categories"
+  add_foreign_key "menus", "menu_subcategories"
   add_foreign_key "menus", "users"
   add_foreign_key "order_payments", "discounts"
   add_foreign_key "order_payments", "payment_methods"

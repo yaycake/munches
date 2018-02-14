@@ -5,13 +5,14 @@ class Api::V1::MenusController < Api::V1::BaseController
   end
 
   def index
-    @menus = policy_scope(Menu)
+    @menus = Menu.all
+    policy_scope(Menu)
   end
 
   private
 
   def set_menu
-    @menus = Menu.find(params[:id])
+    @menu = Menu.find(params[:id])
     authorize @menu  # For Pundit
   end
 
