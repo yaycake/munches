@@ -10,27 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214120658) do
+ActiveRecord::Schema.define(version: 20180214123619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name"
-    t.integer  "customer_id"
     t.text     "street"
     t.text     "city"
     t.text     "zipcode"
     t.text     "district"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["customer_id"], name: "index_addresses_on_customer_id", using: :btree
-  end
-
-  create_table "customers", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "wechat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -160,10 +150,8 @@ ActiveRecord::Schema.define(version: 20180214120658) do
 
   create_table "phone_numbers", force: :cascade do |t|
     t.string   "phone_number"
-    t.integer  "customer_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["customer_id"], name: "index_phone_numbers_on_customer_id", using: :btree
   end
 
   create_table "prices", force: :cascade do |t|
@@ -195,11 +183,11 @@ ActiveRecord::Schema.define(version: 20180214120658) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "wechat_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "addresses", "customers"
   add_foreign_key "menu_categories", "menu_subcategories"
   add_foreign_key "menu_categories", "menus"
   add_foreign_key "menu_items", "menu_categories"
@@ -220,6 +208,5 @@ ActiveRecord::Schema.define(version: 20180214120658) do
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "phone_numbers"
   add_foreign_key "orders", "users"
-  add_foreign_key "phone_numbers", "customers"
   add_foreign_key "prices", "menu_items"
 end
