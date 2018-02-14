@@ -11,7 +11,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
   private
 
   def set_order
-    @orders = Order.find(params[:id])
+    @order = Order.find(params[:id])
     authorize @order  # For Pundit
   end
 

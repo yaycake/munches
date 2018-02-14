@@ -1,11 +1,11 @@
-json.extract! @order, :id, :name
+json.extract! @order, :id
   json.ordered_items @order.ordered_items do |ordered_item|
-    json.extract! ordered_item, :is_combo, :combo_side, :combo_drink, :quantity, :subtotal, :created_at
-      json.menu_items ordered_item.menu_items do |menu_item|
-        json.extract! menu_item, :name, :description, :prices
-      end
+    json.extract! ordered_item, :is_combo, :quantity, :subtotal, :created_at
+      # json.menu_items ordered_item.menu_items do |menu_item|
+      #   json.extract! menu_item, :name, :description, :prices
+      # end
   end
-  end
+
 
 
 # json.extract! @menu, :id, :name

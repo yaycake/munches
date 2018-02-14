@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :menus, only: [ :index, :show ]
       resources :menu_categories, only: [ :index, :show ]
       resources :menu_subcategories, only: [ :index, :show ]
+      resources :user, only: [ :index, :show ]
     end
 
   end
