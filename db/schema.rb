@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214094206) do
+ActiveRecord::Schema.define(version: 20180214120658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,12 +89,10 @@ ActiveRecord::Schema.define(version: 20180214094206) do
     t.string   "daysAvailable"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.integer  "user_id"
     t.integer  "menu_category_id"
     t.integer  "menu_subcategory_id"
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id", using: :btree
     t.index ["menu_subcategory_id"], name: "index_menus_on_menu_subcategory_id", using: :btree
-    t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
   create_table "order_payments", force: :cascade do |t|
@@ -121,8 +119,6 @@ ActiveRecord::Schema.define(version: 20180214094206) do
   create_table "ordered_items", force: :cascade do |t|
     t.integer  "menu_item_id"
     t.text     "is_combo"
-    t.string   "combo_side"
-    t.string   "combo_drink"
     t.integer  "quantity"
     t.integer  "subtotal"
     t.integer  "order_id"
@@ -134,7 +130,6 @@ ActiveRecord::Schema.define(version: 20180214094206) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "order_payment_id"
-    t.integer  "customer_id"
     t.datetime "ordered_time"
     t.datetime "delivered_time"
     t.text     "order_comments"
@@ -143,11 +138,12 @@ ActiveRecord::Schema.define(version: 20180214094206) do
     t.integer  "phone_number_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
-    t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
     t.index ["order_payment_id"], name: "index_orders_on_order_payment_id", using: :btree
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["phone_number_id"], name: "index_orders_on_phone_number_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -214,17 +210,16 @@ ActiveRecord::Schema.define(version: 20180214094206) do
   add_foreign_key "menu_subcategories", "menus"
   add_foreign_key "menus", "menu_categories"
   add_foreign_key "menus", "menu_subcategories"
-  add_foreign_key "menus", "users"
   add_foreign_key "order_payments", "discounts"
   add_foreign_key "order_payments", "payment_methods"
   add_foreign_key "order_payments", "payment_statuses"
   add_foreign_key "ordered_items", "menu_items"
   add_foreign_key "ordered_items", "orders"
   add_foreign_key "orders", "addresses"
-  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "order_payments"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "phone_numbers"
+  add_foreign_key "orders", "users"
   add_foreign_key "phone_numbers", "customers"
   add_foreign_key "prices", "menu_items"
 end
