@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :addresses
   has_many :phone_numbers
+  # belongs_to :address
+  # belongs_to :phone_number
 end

@@ -6,7 +6,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def index
-    @users = policy_scope(User)
+    @users = User.all
   end
 
   private
