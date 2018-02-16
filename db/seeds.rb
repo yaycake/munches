@@ -9,22 +9,35 @@
 
 require 'faker'
 
+User.destroy_all
+PaymentStatus.destroy_all
+PaymentMethod.destroy_all
+Price.destroy_all
+OrderedItem.destroy_all
+MenuItem.destroy_all
+MenuSubcategory.destroy_all
+MenuCategory.destroy_all
+Menu.destroy_all
+
 
 # - - - - - - users
 10.times do #1-10
   User.create({
     first_name: Faker::LordOfTheRings.character,
+    email: Faker::Internet.email,
     last_name: Faker::LordOfTheRings.character,
     wechat_id: Faker::Seinfeld.quote,
     permissions: 'customer'
     })
   end
 
+
 5.times do #11-15
   User.create({
     first_name: 'admin',
     last_name: 'admin',
-    permissions: 'admin'
+    permissions: 'admin',
+    email: Faker::Internet.email
     })
 end
 
@@ -165,25 +178,26 @@ free = Discount.create({name: 'free', amount: '100'}) #1
 none = Discount.create({name: 'none', amount: '0'}) #2
 
 
-# - - - - - - - orders
-
-Order.create({
-  user_id: 1,
-  # order_payment_id: 1,
-  # order_status_id: 1
-  })
-
-
 # - - - - - order_payment
 
 OrderPayment.create({
   id: 1,
   total: '150',
   fees: '25',
-  payment_status_id: 1,
-  payment_method_id: 2,
+  # payment_status_id: 1,
+  # payment_method_id: 2,
   # discount_id: 0,
-  order_id: 1
+  # order_id: 1
+  })
+
+# - - - - - - - orders
+
+Order.create({
+  id: 1,
+  user_id: 1,
+  order_payment_id: 1
+  # order_payment_id: 1,
+  # order_status_id: 1
   })
 
 
@@ -229,7 +243,6 @@ OrderPayment.create({
     city: 'Seattle',
     zipcode: '98004',
     district: 'shopping',
-    user_id: 1
     })
 
   Address.create ({
@@ -238,7 +251,6 @@ OrderPayment.create({
     city: 'NYC',
     zipcode: '11207',
     district: 'shopping',
-    user_id: 1
     })
 
 # - - - - - - phone_numbers

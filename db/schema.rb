@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20180216091401) do
     t.text     "last_name"
     t.string   "permissions"
     t.string   "wechat"
+    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -197,6 +198,7 @@ ActiveRecord::Schema.define(version: 20180216091401) do
     t.datetime "updated_at",                          null: false
     t.string   "wechat_id"
     t.integer  "phone_number_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["phone_number_id"], name: "index_users_on_phone_number_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
