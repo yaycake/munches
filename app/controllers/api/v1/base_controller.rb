@@ -13,6 +13,7 @@ class Api::V1::BaseController < ActionController::Base
   private
 
   def user_not_authorized(exception)
+    # byebug
     render json: {
       error: "Unauthorized #{exception.policy.class.to_s.underscore.camelize}.#{exception.query}"
     }, status: :unauthorized
@@ -28,6 +29,7 @@ class Api::V1::BaseController < ActionController::Base
     else
       response = { error: "Internal Server Error" }
     end
-    render json: response, status: :internal_server_error
+    # render json: response, status: :internal_server_error
+    # return
   end
 end
