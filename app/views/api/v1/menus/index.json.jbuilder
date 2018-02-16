@@ -1,6 +1,6 @@
 json.array! @menus do |menu|
 
-  json.extract! menu, :id, :name, :description, :timeAvailable, :timeExpire, :daysAvailable, :user
+  json.extract! menu, :id, :name, :description, :time_start, :time_end, :days_available, :user
 
   json.menu_categories menu.menu_categories do |menu_category|
     json.extract! menu_category, :name, :description

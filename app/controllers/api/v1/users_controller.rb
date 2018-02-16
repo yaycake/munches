@@ -1,6 +1,7 @@
 # users_controller.rb
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [ :show ]
+  include Devise
 
   def show
   end

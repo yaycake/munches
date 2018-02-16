@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214133342) do
+ActiveRecord::Schema.define(version: 20180216091401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_discounts_on_user_id", using: :btree
   end
 
   create_table "menu_categories", force: :cascade do |t|
@@ -76,15 +78,17 @@ ActiveRecord::Schema.define(version: 20180214133342) do
   create_table "menus", force: :cascade do |t|
     t.text     "name"
     t.text     "description"
-    t.datetime "timeAvailable"
-    t.datetime "timeExpire"
-    t.string   "daysAvailable"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "menu_category_id"
     t.integer  "menu_subcategory_id"
+    t.integer  "user_id"
+    t.datetime "time_start"
+    t.datetime "time_end"
+    t.datetime "days_available"
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id", using: :btree
     t.index ["menu_subcategory_id"], name: "index_menus_on_menu_subcategory_id", using: :btree
+    t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
   create_table "order_payments", force: :cascade do |t|
@@ -97,7 +101,9 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.integer  "delivery_fee"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "order_id"
     t.index ["discount_id"], name: "index_order_payments_on_discount_id", using: :btree
+    t.index ["order_id"], name: "index_order_payments_on_order_id", using: :btree
     t.index ["payment_method_id"], name: "index_order_payments_on_payment_method_id", using: :btree
     t.index ["payment_status_id"], name: "index_order_payments_on_payment_status_id", using: :btree
   end
@@ -116,14 +122,14 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.integer  "order_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "combo_side"
+    t.string   "combo_drink"
     t.index ["menu_item_id"], name: "index_ordered_items_on_menu_item_id", using: :btree
     t.index ["order_id"], name: "index_ordered_items_on_order_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "order_payment_id"
-    t.datetime "ordered_time"
-    t.datetime "delivered_time"
     t.text     "order_comments"
     t.integer  "order_status_id"
     t.integer  "address_id"
@@ -131,6 +137,8 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_id"
+    t.datetime "time_delivered"
+    t.datetime "time_ordered"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["order_payment_id"], name: "index_orders_on_order_payment_id", using: :btree
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
@@ -167,17 +175,15 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.integer  "price_special"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "price_addon"
     t.index ["menu_item_id"], name: "index_prices_on_menu_item_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.text     "first_name"
     t.text     "last_name"
-    t.text     "password"
-    t.text     "permissions"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
+    t.string   "permissions"
+    t.string   "wechat"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -187,14 +193,16 @@ ActiveRecord::Schema.define(version: 20180214133342) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "wechat_id"
     t.integer  "phone_number_id"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["phone_number_id"], name: "index_users_on_phone_number_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "discounts", "users"
   add_foreign_key "menu_categories", "menu_subcategories"
   add_foreign_key "menu_categories", "menus"
   add_foreign_key "menu_items", "menu_categories"
@@ -205,7 +213,9 @@ ActiveRecord::Schema.define(version: 20180214133342) do
   add_foreign_key "menu_subcategories", "menus"
   add_foreign_key "menus", "menu_categories"
   add_foreign_key "menus", "menu_subcategories"
+  add_foreign_key "menus", "users"
   add_foreign_key "order_payments", "discounts"
+  add_foreign_key "order_payments", "orders"
   add_foreign_key "order_payments", "payment_methods"
   add_foreign_key "order_payments", "payment_statuses"
   add_foreign_key "ordered_items", "menu_items"

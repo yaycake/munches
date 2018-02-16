@@ -1,7 +1,11 @@
 class MenuItem < ApplicationRecord
-  belongs_to :menu_subcategory
-  belongs_to :menu_category
-  belongs_to :menu
-  belongs_to :price
+  belongs_to :menu_subcategory, optional: true
+  belongs_to :menu_category, optional: true
+  belongs_to :menu, optional: true
+  belongs_to :price, optional: true
+  # after_initialize :init
 
+  # def init
+  #   self.menu_subcategory ||= none
+  # end
 end
