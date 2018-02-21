@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  get 'pages/login'
+
+  get 'menus/index', to: 'menus#index'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: 'menus#index'
+  get 'menus/new', to: 'menus#new'
+  get 'menus/show', to: 'menus#show'
+  get 'menus/edit', to: 'menus#edit'
+
+  root 'menus#index'
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
