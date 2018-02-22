@@ -5,4 +5,7 @@ class PagesController < ApplicationController
   def login
   end
 
+  def sales
+  end
+
 end
