@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'orders/index', to: "orders#index"
+  get 'orders/show', to: "orders#show"
+  get 'orders/create', to: "orders#create"
+  get 'orders/edit', to: "orders#edit"
+  get 'orders/delete', to: "orders#delete"
+
   get 'pages/login'
 
   get 'menus/index', to: 'menus#index'
@@ -9,7 +15,7 @@ Rails.application.routes.draw do
   get 'menus/show', to: 'menus#show'
   get 'menus/edit', to: 'menus#edit'
 
-  root 'menus#index'
+  root 'orders#index'
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
