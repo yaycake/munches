@@ -1,8 +1,12 @@
 <div class="container">
   <div class="form-card">
+
+    <h4>Sign Up</h4>
+
     <div class="munchlogo">
       <%= image_tag "logoblackonwhite.svg", class: "login_logo" %>
     </div>
+
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
@@ -11,16 +15,14 @@
       <% if @minimum_password_length %><br />
       <em><%= @minimum_password_length %> characters minimum</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
       <div class="form-actions">
-        <%= f.submit "Sign up" %>
+        <%= f.submit "Sign up", :class => 'form-button' %>
       </div>
+      <% end %>
       <br />
       <%= render "devise/shared/links" %>
     </div>
-
-
   </div>
-
 </div>
-<% end %>
+

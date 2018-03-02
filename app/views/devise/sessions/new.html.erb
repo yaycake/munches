@@ -3,7 +3,8 @@
 <div class="container">
   <div class="form-card">
       <div class="munchlogo">
-        <%= image_tag "logoblackonwhite.svg", class: "login_logo" %>
+        <%#= image_tag "logoblackonwhite.svg", class: "login_logo" %>
+        <h2>Log In</h2>
       </div>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
@@ -12,7 +13,7 @@
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
         <div class="form-actions">
-          <%= f.button :submit, "Log In" %>
+          <%= f.button :submit, "Log In", :class => 'form-button' %>
         </div>
       <% end %>
       <div class="devise-links">

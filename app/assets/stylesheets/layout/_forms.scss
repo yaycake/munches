@@ -1,0 +1,57 @@
+
+.munch_logo{
+  padding: 2rem;
+  margin-bottom: 20px;
+}
+.login_logo{
+  width: 275px;
+  height: auto;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.form-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.form-inputs {
+  width: 100%;
+}
+
+.form-inputs::placeholder{
+  font-size: .75rem;
+  font-style: oblique;
+  text-align: center;
+}
+
+.form-inputs::placeholder-shown{
+  border: 1px solid aqua;
+}
+
+.form-action>input, .form-button{
+  background-color: black;
+  color:white;
+  border-radius: .18rem;
+  font-weight: bold;
+}
+
+#user_remember_me{
+  width: 20px;
+}
+
+input, .user-password {
+  width: 250px;
+  margin-top: 20px;
+}
+
+label {
+  font-size: .75rem;
+}
+
+.devise-links{
+  margin-top: 3rem;
+}
