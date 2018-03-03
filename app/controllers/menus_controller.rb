@@ -9,6 +9,11 @@ class MenusController < ApplicationController
     @menu = Menu.new
   end
 
+  def create
+    menu = Menu.new(name: params[:name], description: params[:description], time_start: params[:time_start], time_end: params[:time_end], days_available: params[:days_available])
+    menu.save
+  end
+
   def show
   end
 

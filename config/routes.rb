@@ -1,23 +1,38 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root 'orders#index'
+
+# - - - - - - - - USERS has_many Addresses/Phone Numbers/Orders
+
+  # resources :users, only: [:show, :create, :update, :edit] do
+  #   resources :addresses
+  #   resources :phone_numbers
+  #   resources :orders, only: [:index, :show, :create, :delete]
+  # end
+
   get 'orders/index', to: "orders#index"
   get 'orders/show', to: "orders#show"
-  get 'orders/create', to: "orders#create"
+  post 'orders/create', to: "orders#create"
   get 'orders/edit', to: "orders#edit"
   get 'orders/delete', to: "orders#delete"
 
+resources :menus
+
+  # get 'menus/index' => 'menus'
+  # get 'menus/new', to: 'menus#new'
+  # post 'menus/create', to:'menus#create'
+  # get 'menus/:id', to: 'menus#show'
+  # get 'menus/:id/edit', to: 'menus#edit'
+
+
+# - - - - - - - - - - - - - PAGES
+
   get 'pages/login'
-
   get 'pages/sales', to: "pages#sales"
+  get 'pages/contact', to: "pages#contact"
 
-  get 'menus/index', to: 'menus#index'
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get 'menus/new', to: 'menus#new'
-  get 'menus/show', to: 'menus#show'
-  get 'menus/edit', to: 'menus#edit'
-
-  root 'orders#index'
+# - - - - - - - - - - - - - API ROUTES
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -31,3 +46,5 @@ Rails.application.routes.draw do
   end
 
 end
+
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
