@@ -1,2 +1,14 @@
 <h1>Menus#edit</h1>
 <p>Find me in app/views/menus/edit.html.erb</p>
+
+
+<% simple_form_for(@menu) do |f| %>
+  <%= f.input :name, label: false %>
+  <%= f.input :description, label: false %>
+  <%= f.input :menu_categories, label: false %>
+  <%= f.input :menu_subcategories, label: false %>
+  <%= f.input :time_start, label: false %>
+  <%= f.input :time_end, label: false %>
+  <%= f.input :days_available, label: false %>
+  <%= f.button :submit, "Save This Menu", class:"btn" %>
+  <% end %>

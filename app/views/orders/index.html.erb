@@ -8,6 +8,8 @@
     <%= order.user.first_name %>
     <%= order.user.last_name %>
     </br>
+    <strong>at address:</strong></br>
+    <%= order.address_id %> </br>
     <strong>Ordered:</strong>
     </br>
     <ul>
@@ -20,7 +22,8 @@
         </li>
     </ul>
     <strong>Order # <%= order.id %></strong>
-
+    </br>
+    <strong>Order Status:</strong>
     <%= order.order_status %> </br>
     <%= order.address_id %> </br>
     <%= order.time_ordered  %> </br>

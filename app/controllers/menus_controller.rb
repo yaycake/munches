@@ -28,7 +28,7 @@ class MenusController < ApplicationController
   end
 
   def menu_parameters
-    params.require(:menu).permit(:name, :description)
+    params.permit(:name)
   end
 
 end
