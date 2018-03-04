@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+// @import "bootstrap-sprockets";
+
+
+.flash{
+  text-align: center;
+}
+
+/*- - - - - navbar*/
+
+/*.navbar-wagon {
+  width: 100%;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px;
+}
+
+.navbar-wagon-right{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  right: 2.5rem;
+
+}
+
+.navbar-wagon-item{
+  display:inline;
+  margin: 5px;
+}
+
+.avatar {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+}
+
+.navbar-logo {
+  height: 4rem;
+  width: 4rem;
+}*/
+
