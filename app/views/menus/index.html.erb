@@ -3,7 +3,7 @@
 
  <%= link_to "Add A New Menu", new_menu_path %>
 
-<div style="background-color: lightgray;">
+<div style="background-color: lightgray; width: 500px; margin: 20px; padding: 10px;">
   <% @menus.each do |menu| %>
     <h3><%= menu.name %> </h3>
     <p>Description:<%= menu.description %> </p>
