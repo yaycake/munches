@@ -1,2 +1,26 @@
 <h1>Menus#show</h1>
 <p>Find me in app/views/menus/show.html.erb</p>
+
+
+<div class="menu-card" style="background-color: lightgray;">
+    <h4> <%= @menu.name %></h4>
+    </br>
+    <p><%= @menu.description %></p>
+    <h4>Categories</h4>
+      <% @menu.menu_categories.each do |category| %>
+        <strong><%= category.name %></strong>
+        <%= category.description %>
+      </br>
+        <strong>Menu Items:</strong>
+        <ul>
+            <% category.menu_items.each do |item| %>
+              <li>
+                <%= item.name %>
+                <%= item.description %>
+                <%= item.price %>
+            <% end %>
+              </li>
+        </ul>
+    <% end %>
+</div>
+

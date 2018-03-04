@@ -31,7 +31,7 @@ gem 'faker'
 
 gem 'bootstrap', '~> 4.0.0'
 
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

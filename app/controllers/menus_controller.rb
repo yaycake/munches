@@ -28,7 +28,7 @@ class MenusController < ApplicationController
   end
 
   def menu_parameters
-    params.require(:menu).permit(:user, :name, :description, :time_start, :time_end, :days_available)
+    params.require(:menu).permit(:name, :description)
   end
 
 end

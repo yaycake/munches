@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'menu_items/index'
+
+  get 'menu_items/show'
+
+  get 'menu_items/edit'
+
+  get 'menu_items/update'
+
+  get 'menu_items/delete'
+
   devise_for :users
 
   root 'orders#index'
