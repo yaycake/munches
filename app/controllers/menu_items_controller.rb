@@ -1,5 +1,5 @@
 class MenuItemsController < ApplicationController
-  before_action :set_menu_item, only: [:show, :edit]
+  before_action :set_menu_item, only: [:show, :edit, :get_name]
 
   def index
     @menu_items = MenuItem.all
@@ -27,6 +27,10 @@ class MenuItemsController < ApplicationController
   end
 
   private
+
+  def get_name(type, id)
+
+  end
 
   def set_menu_item
     @menu_item = MenuItem.find(params[:id])

@@ -4,4 +4,8 @@ class Menu < ApplicationRecord
 
   has_many :menu_categories
   has_many :menu_subcategories
+  has_many :menu_items
+
+  accepts_nested_attributes_for :menu_items
+
 end

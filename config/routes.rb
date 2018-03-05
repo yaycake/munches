@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'menu_items/index'
+  get 'menu_categories/index'
+  get 'menu_categories/show'
+  get 'menu_categories/edit'
+  get 'menu_categories/update'
+  get 'menu_categories/delete'
 
-  get 'menu_items/show'
-
-  get 'menu_items/edit'
-
-  get 'menu_items/update'
-
-  get 'menu_items/delete'
+  # get 'menu_items/index'
+  # get 'menu_items/show'
+  # get 'menu_items/edit'
+  # get 'menu_items/update'
+  # get 'menu_items/delete'
 
   devise_for :users
 
@@ -27,7 +29,9 @@ Rails.application.routes.draw do
   get 'orders/edit', to: "orders#edit"
   get 'orders/delete', to: "orders#delete"
 
-resources :menus
+resources :menus do
+  resources :menu_items
+end
 
   # get 'menus/index' => 'menus'
   # get 'menus/new', to: 'menus#new'
@@ -44,17 +48,33 @@ resources :menus
 
 # - - - - - - - - - - - - - API ROUTES
 
-  namespace :api, defaults: { format: :json } do
+
+ namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :orders, only: [ :index, :show ]
       resources :menus, only: [ :index, :show ]
       resources :menu_categories, only: [ :index, :show ]
       resources :menu_subcategories, only: [ :index, :show ]
+      resources :menu_items, only: [:index, :show]
       resources :users, only: [ :index, :show ]
     end
 
   end
 
 end
+
+#   namespace :api, defaults: { format: :json } do
+#     namespace :v1 do
+#       resources :orders, only: [ :index, :show ]
+#       resources :menus, only: [ :index, :show ]
+#       resources :menu_categories, only: [ :index, :show ]
+#       resources :menu_subcategories, only: [ :index, :show ]
+#       resources :menu_items, only: [:index, :show]
+#       resources :users, only: [ :index, :show ]
+#     end
+
+#   end
+
+# end
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
