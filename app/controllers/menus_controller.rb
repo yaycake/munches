@@ -19,9 +19,20 @@ class MenusController < ApplicationController
 
   def edit
     @menu.update(menu_parameters)
+    @category_names = get_category_names
   end
 
   private
+
+  def get_category_names
+     categories = MenuCategory.all
+     names = []
+     categories.each do |category|
+        collection = []
+        names << category.name
+      end
+    @category_names = names
+  end
 
   def get_category
     @category = @menu.menu_category

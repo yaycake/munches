@@ -13,7 +13,9 @@ User.destroy_all
 PaymentStatus.destroy_all
 PaymentMethod.destroy_all
 Price.destroy_all
+Order.destroy_all
 OrderedItem.destroy_all
+OrderPayment.destroy_all
 MenuItem.destroy_all
 MenuSubcategory.destroy_all
 MenuCategory.destroy_all
@@ -181,21 +183,21 @@ none = Discount.create({name: 'none', amount: '0'}) #2
 # - - - - - order_payment
 
 OrderPayment.create({
-  id: 1,
+  id: 2,
   total: '150',
   fees: '25',
   # payment_status_id: 1,
   # payment_method_id: 2,
   # discount_id: 0,
-  # order_id: 1
+  # order_id: 2
   })
 
 # - - - - - - - orders
 
 Order.create({
   id: 2,
-  user_id: 1,
-  order_payment_id: 1
+  # user_id: 12,
+  # order_payment_id: 2
   # order_payment_id: 1,
   # order_status_id: 1
   })
@@ -211,7 +213,7 @@ Order.create({
     combo_side: nil,
     combo_drink: nil,
     subtotal: 50,
-    order_id: 1
+    order_id: 2
     })
 
   OrderedItem.create({
@@ -221,7 +223,7 @@ Order.create({
     combo_side: nil,
     combo_drink: nil,
     subtotal: 50,
-    order_id: 1
+    order_id: 2
   })
 
   OrderedItem.create({
@@ -231,7 +233,7 @@ Order.create({
     combo_side: nil,
     combo_drink: nil,
     subtotal: 50,
-    order_id: 1
+    order_id: 2
   })
 
 

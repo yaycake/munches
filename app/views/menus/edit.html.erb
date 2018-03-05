@@ -20,20 +20,19 @@
   <!-- - - - - - menu items test -->
 <h4> Menu Items </h4>
 
-    <%= menu.simple_fields_for :menu_items do |item| %>
-      <div class="menu_item" style="border: 1px solid blue;">
-        <%= item.input :name %>
-        <%= item.input :description %>
-        <%= item.simple_fields_for :menu_categories do |category| %>
-          <%= category.input :name, label: "Category Name" %>
-        <% end %>
+<%= menu.simple_fields_for :menu_items do |item| %>
+  <div class="menu_item" style="border: 1px solid blue;">
+    <%= item.input :name %>
+    <%= item.input :description %>
 
-        <%= item.input :menu_category %>
-        <%= item.input :menu_subcategory %>
-      </div>
-    <% end %>
-
+    <%= item.simple_fields_for :menu_categories do |category| %>
+    <%= category.input :category, :collection => @category_names %>
+    <%= category.input :menu_category %>
+    <%= category.input :menu_subcategory %>
   <% end %>
+  <% end %>
+  </div>
+<% end %>
 
 
 
