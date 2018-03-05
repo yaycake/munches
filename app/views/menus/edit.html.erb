@@ -7,15 +7,16 @@
   <%= menu.input :name, placeholder: "name", label: false %>
   <%= menu.input :description, label: false %>
 
-  <%= menu.input :menu_categories, label: false %>
+  <%= menu.input :menu_categories, :collection => @category_names, input_html: { multiple: true } %>
   <%= menu.input :menu_subcategories, label: false %>
 
   <%= menu.input :time_start %>
   <%= menu.input :time_end %>
   <%= menu.input :days_available %>
-  <%= menu.button :submit, "Save This Menu", class:"btn" %>
 
 
+
+  <%= menu.button :submit, class: "btn", method: 'update' %>
 
   <!-- - - - - - menu items test -->
   <h4> Menu Items </h4>
@@ -32,9 +33,8 @@
       <%= item.simple_fields_for :menu_subcategories do |subcategory| %>
         <%= subcategory.input :subcategory, :collection => @subcategory_names %>
       <% end %>
-
+    <% end %>
     </div>
-  <% end %>
 
 <% end %>
 

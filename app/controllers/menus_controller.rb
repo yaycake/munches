@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only:[:show, :edit, :get_category, :get_subcategory]
+  before_action :set_menu, only:[:show, :edit, :update, :get_category, :get_subcategory]
 
   def index
     @menus = Menu.all
@@ -19,12 +19,22 @@ class MenusController < ApplicationController
 
   def edit
     @menu.update(menu_parameters)
+
+    ## Calls private methods to send category names
+    ## to view
     @category_names = get_category_names
     @subcategory_names = get_subcategory_names
   end
 
+  def update
+    @menu.save
+  end
+
   private
 
+
+  ###### GETS CATEGORY AND SUBCATEGORY NAMES
+  ###### FOR ADMIN DROPDOWNS
   def get_category_names
      categories = MenuCategory.all
      names = []
@@ -50,6 +60,9 @@ class MenusController < ApplicationController
   def get_subcategory
     @subcategory = @menu.menu_subcategory
   end
+
+  ###########
+  ###########
 
   def set_menu
     @menu = Menu.find(params[:id])
