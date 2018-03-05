@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221125801) do
+ActiveRecord::Schema.define(version: 20180305043716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,9 @@ ActiveRecord::Schema.define(version: 20180221125801) do
     t.datetime "time_start"
     t.datetime "time_end"
     t.datetime "days_available"
+    t.integer  "menu_items_id"
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id", using: :btree
+    t.index ["menu_items_id"], name: "index_menus_on_menu_items_id", using: :btree
     t.index ["menu_subcategory_id"], name: "index_menus_on_menu_subcategory_id", using: :btree
     t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
@@ -213,6 +215,7 @@ ActiveRecord::Schema.define(version: 20180221125801) do
   add_foreign_key "menu_subcategories", "menu_categories"
   add_foreign_key "menu_subcategories", "menus"
   add_foreign_key "menus", "menu_categories"
+  add_foreign_key "menus", "menu_items", column: "menu_items_id"
   add_foreign_key "menus", "menu_subcategories"
   add_foreign_key "menus", "users"
   add_foreign_key "order_payments", "discounts"

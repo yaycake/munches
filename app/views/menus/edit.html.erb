@@ -2,13 +2,23 @@
 <p>Find me in app/views/menus/edit.html.erb</p>
 
 
-<% simple_form_for(@menu) do |f| %>
-  <%= f.input :name, label: false %>
-  <%= f.input :description, label: false %>
-  <%= f.input :menu_categories, label: false %>
-  <%= f.input :menu_subcategories, label: false %>
-  <%= f.input :time_start, label: false %>
-  <%= f.input :time_end, label: false %>
-  <%= f.input :days_available, label: false %>
-  <%= f.button :submit, "Save This Menu", class:"btn" %>
+<%= simple_form_for(@menu) do |menu| %>
+  <%= menu.input :name, placeholder: "name", label: false %>
+  <%= menu.input :description, label: false %>
+
+  <!-- - - - - - iterate and list categories -->
+
+  <% menu.simple_fields_for :menu_category do |category| %>
+    <%= category.input :name %>
+    <%= category.input :description %>
+  <% end %>
+
+
+
+  <%= menu.input :menu_categories, label: false %>
+  <%= menu.input :menu_subcategories, label: false %>
+  <%= menu.input :time_start %>
+  <%= menu.input :time_end %>
+  <%= menu.input :days_available %>
+  <%= menu.button :submit, "Save This Menu", class:"btn" %>
   <% end %>
