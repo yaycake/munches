@@ -1,0 +1,20 @@
+<h1>Menus#index</h1>
+<p>Find me in app/views/menus/index.html.erb</p>
+
+ <%= link_to "Add A New Menu", new_menu_path %>
+
+<div style="background-color: lightgray; width: 500px; margin: 20px; padding: 10px;">
+  <% @menus.each do |menu| %>
+    <h3><%= menu.name %> </h3>
+    <p>Description:<%= menu.description %> </p>
+    <%= menu.time_start %>
+    <%= menu.time_end %>
+    <%= menu.days_available %>
+
+    <%= link_to "View Menu", menu_path(menu.id) %>
+  <% end %>
+
+
+
+     <%#= link_to "Profile", @menu %>
+</div>
