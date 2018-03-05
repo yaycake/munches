@@ -18,20 +18,24 @@
 
 
   <!-- - - - - - menu items test -->
-<h4> Menu Items </h4>
+  <h4> Menu Items </h4>
+  <%= menu.simple_fields_for :menu_items do |item| %>
+    <div class="menu_item" style="border: 1px solid blue;">
 
-<%= menu.simple_fields_for :menu_items do |item| %>
-  <div class="menu_item" style="border: 1px solid blue;">
-    <%= item.input :name %>
-    <%= item.input :description %>
+      <%= item.input :name %>
+      <%= item.input :description %>
 
-    <%= item.simple_fields_for :menu_categories do |category| %>
-    <%= category.input :category, :collection => @category_names %>
-    <%= category.input :menu_category %>
-    <%= category.input :menu_subcategory %>
+      <%= item.simple_fields_for :menu_categories do |category| %>
+      <%= category.input :category, :collection => @category_names %>
+      <% end %>
+
+      <%= item.simple_fields_for :menu_subcategories do |subcategory| %>
+        <%= subcategory.input :subcategory, :collection => @subcategory_names %>
+      <% end %>
+
+    </div>
   <% end %>
-  <% end %>
-  </div>
+
 <% end %>
 
 

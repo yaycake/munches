@@ -20,6 +20,7 @@ class MenusController < ApplicationController
   def edit
     @menu.update(menu_parameters)
     @category_names = get_category_names
+    @subcategory_names = get_subcategory_names
   end
 
   private
@@ -28,10 +29,18 @@ class MenusController < ApplicationController
      categories = MenuCategory.all
      names = []
      categories.each do |category|
-        collection = []
         names << category.name
       end
     @category_names = names
+  end
+
+   def get_subcategory_names
+     subcategories = MenuSubcategory.all
+     names = []
+     subcategories.each do |subcategory|
+        names << subcategory.name
+      end
+    @subcategory_names = names
   end
 
   def get_category
