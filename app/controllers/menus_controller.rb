@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only:[:show, :edit]
+  before_action :set_menu, only:[:show, :edit, :get_category, :get_subcategory]
 
   def index
     @menus = Menu.all
@@ -23,12 +23,23 @@ class MenusController < ApplicationController
 
   private
 
+  def get_category
+    @category = @menu.menu_category
+  end
+
+  def get_subcategory
+    @subcategory = @menu.menu_subcategory
+  end
+
   def set_menu
     @menu = Menu.find(params[:id])
+    @menu_items = Menu.find(params[:id]).menu_items
   end
+
 
   def menu_parameters
     params.permit(:name)
   end
+
 
 end

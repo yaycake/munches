@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
   get 'menu_categories/index'
-
   get 'menu_categories/show'
-
   get 'menu_categories/edit'
-
   get 'menu_categories/update'
-
   get 'menu_categories/delete'
 
-  get 'menu_items/index'
-
-  get 'menu_items/show'
-
-  get 'menu_items/edit'
-
-  get 'menu_items/update'
-
-  get 'menu_items/delete'
+  # get 'menu_items/index'
+  # get 'menu_items/show'
+  # get 'menu_items/edit'
+  # get 'menu_items/update'
+  # get 'menu_items/delete'
 
   devise_for :users
 
@@ -37,7 +29,9 @@ Rails.application.routes.draw do
   get 'orders/edit', to: "orders#edit"
   get 'orders/delete', to: "orders#delete"
 
-resources :menus
+resources :menus do
+  resources :menu_items
+end
 
   # get 'menus/index' => 'menus'
   # get 'menus/new', to: 'menus#new'

@@ -2,23 +2,49 @@
 <p>Find me in app/views/menus/edit.html.erb</p>
 
 
+
 <%= simple_form_for(@menu) do |menu| %>
   <%= menu.input :name, placeholder: "name", label: false %>
   <%= menu.input :description, label: false %>
 
-  <!-- - - - - - iterate and list categories -->
-
-  <% menu.simple_fields_for :menu_category do |category| %>
-    <%= category.input :name %>
-    <%= category.input :description %>
-  <% end %>
-
-
-
   <%= menu.input :menu_categories, label: false %>
   <%= menu.input :menu_subcategories, label: false %>
+
   <%= menu.input :time_start %>
   <%= menu.input :time_end %>
   <%= menu.input :days_available %>
   <%= menu.button :submit, "Save This Menu", class:"btn" %>
+
+
+
+  <!-- - - - - - menu items test -->
+<h4> Menu Items </h4>
+
+    <%= menu.simple_fields_for :menu_items do |item| %>
+      <div class="menu_item" style="border: 1px solid blue;">
+        <%= item.input :name %>
+        <%= item.input :description %>
+        <%= item.simple_fields_for :menu_categories do |category| %>
+          <%= category.input :name, label: "Category Name" %>
+        <% end %>
+
+        <%= item.input :menu_category %>
+        <%= item.input :menu_subcategory %>
+      </div>
+    <% end %>
+
   <% end %>
+
+
+
+ <% Menu.find(params[:id]).menu_items.each do |menu_item| %>
+    <%= menu_item.menu_category_id %>
+ <% end %>
+
+
+
+  <!-- - - - - - iterate through menu items -->
+
+
+
+
