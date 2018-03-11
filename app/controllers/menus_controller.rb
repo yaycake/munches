@@ -1,3 +1,5 @@
+require 'menu_items_controller'
+
 class MenusController < ApplicationController
   before_action :set_menu, only:[:show, :edit, :update, :get_category, :get_subcategory]
 
@@ -9,8 +11,18 @@ class MenusController < ApplicationController
     @menu = Menu.new
   end
 
+  # def item
+  #   @item = Item.find(item_params)
+  # end
+
   def create
-    menu = Menu.new(name: params[:name], description: params[:description], time_start: params[:time_start], time_end: params[:time_end], days_available: params[:days_available])
+    menu = Menu.new(
+        name: params[:name],
+        description: params[:description],
+        time_start: params[:time_start],
+        time_end: params[:time_end],
+        days_available: params[:days_available]
+    )
     menu.save
   end
 
@@ -18,7 +30,7 @@ class MenusController < ApplicationController
   end
 
   def edit
-    @menu.update(menu_parameters)
+    @menu = Menu.find(params[:id])
 
     ## Calls private methods to send category names
     ## to view
@@ -27,7 +39,23 @@ class MenusController < ApplicationController
   end
 
   def update
-    @menu.save
+    @menu = Menu.find(params[:id])
+    @menu.user = current_user
+
+    if @menu.update(menu_params)
+      redirect_to menu_path(@menu)
+    else
+      render :edit
+    end
+
+    @items = @menu.menu_items
+    # @item = Item.find(params[:id])
+
+    # if @item.update(item_params)
+    #   redirect_to menu_path(@menu)
+    # else
+    #   render :edit
+    # end
   end
 
   private
@@ -44,7 +72,7 @@ class MenusController < ApplicationController
     @category_names = names
   end
 
-   def get_subcategory_names
+  def get_subcategory_names
      subcategories = MenuSubcategory.all
      names = []
      subcategories.each do |subcategory|
@@ -69,10 +97,12 @@ class MenusController < ApplicationController
     @menu_items = Menu.find(params[:id]).menu_items
   end
 
-
-  def menu_parameters
-    params.permit(:name)
+  def menu_params
+    params.require(:menu).permit(:name, :time_start, :time_end)
   end
 
+  def item_params
+    params.require(:menu_item).permit(:name, :description)
+  end
 
 end

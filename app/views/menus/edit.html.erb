@@ -2,47 +2,30 @@
 <p>Find me in app/views/menus/edit.html.erb</p>
 
 
-
 <%= simple_form_for(@menu) do |menu| %>
   <%= menu.input :name, placeholder: "name", label: false %>
   <%= menu.input :description, label: false %>
 
-  <%= menu.input :menu_categories, :collection => @category_names, input_html: { multiple: true } %>
-  <%= menu.input :menu_subcategories, label: false %>
+  <%#= menu.input :menu_categories, :collection => @category_names, input_html: { multiple: true } %>
+  <%#= menu.input :menu_subcategories, :collection => @subcategory_names, input_html: { multiple: true } %>
 
   <%= menu.input :time_start %>
   <%= menu.input :time_end %>
-  <%= menu.input :days_available %>
+  <%= menu.input :days_available%>
+  <%= menu.association :menu_categories, :collection => @category_names, prompt: "Choose a Category"%>
 
-
-
-  <%= menu.button :submit, class: "btn", method: 'update' %>
-
+  <%= menu.button :submit, "Update Menu", class: "btn btn-primary"%>
+  <%end%>
   <!-- - - - - - menu items test -->
+
   <h4> Menu Items </h4>
-  <%= menu.simple_fields_for :menu_items do |item| %>
-    <div class="menu_item" style="border: 1px solid blue;">
-
-      <%= item.input :name %>
-      <%= item.input :description %>
-
-      <%= item.simple_fields_for :menu_categories do |category| %>
-      <%= category.input :category, :collection => @category_names %>
-      <% end %>
-
-      <%= item.simple_fields_for :menu_subcategories do |subcategory| %>
-        <%= subcategory.input :subcategory, :collection => @subcategory_names %>
-      <% end %>
-    <% end %>
-    </div>
-
-<% end %>
+    <% @menu.menu_items.each do |item| %>
+      <%= link_to "#{item.name}", edit_menu_item_path(item) %>
+      <br>
+  <%end%>
 
 
-
- <% Menu.find(params[:id]).menu_items.each do |menu_item| %>
-    <%= menu_item.menu_category_id %>
- <% end %>
+ <!-- RENDER THE MENU ITEM PARTIAL -->
 
 
 

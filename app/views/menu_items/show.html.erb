@@ -1,2 +1,9 @@
 <h1>MenuItems#show</h1>
 <p>Find me in app/views/menu_items/show.html.erb</p>
+
+
+<%= @menu_item.name %>
+<br>
+<%= @menu_item.description %>
+<br>
+<%= link_to "Edit this item", edit_menu_item_path(@menu_item) %>

@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :menus
   has_many :phone_numbers
   has_many :addresses
+  has_many :menu_items
 end

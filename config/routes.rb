@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   get 'menu_categories/index'
   get 'menu_categories/show'
   get 'menu_categories/edit'
-  get 'menu_categories/update'
+  patch 'menu_categories/update'
   get 'menu_categories/delete'
 
 
 
+resources :menu_items
   # get 'menu_items/index'
   # get 'menu_items/show'
   # get 'menu_items/edit'
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
   post 'orders/create', to: "orders#create"
   get 'orders/edit', to: "orders#edit"
   get 'orders/delete', to: "orders#delete"
+
+  # patch 'menus/update', to: "menus#update"
 
 resources :menus do
   resources :menu_items
@@ -60,7 +63,6 @@ end
       resources :menu_items, only: [:index, :show]
       resources :users, only: [ :index, :show ]
     end
-
   end
 
 end
