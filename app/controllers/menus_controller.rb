@@ -16,21 +16,14 @@ class MenusController < ApplicationController
   # end
 
   def create
-    menu = Menu.new(
-        name: params[:name],
-        description: params[:description],
-        time_start: params[:time_start],
-        time_end: params[:time_end],
-        days_available: params[:days_available]
-    )
-    menu.save
+    @menu = Menu.new(menu_params)
+    @menu.save!
   end
 
   def show
   end
 
   def edit
-    @menu = Menu.find(params[:id])
 
     ## Calls private methods to send category names
     ## to view
@@ -49,6 +42,7 @@ class MenusController < ApplicationController
     end
 
     @items = @menu.menu_items
+
     # @item = Item.find(params[:id])
 
     # if @item.update(item_params)
@@ -98,7 +92,7 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params.require(:menu).permit(:name, :time_start, :time_end)
+    params.require(:menu).permit(:name, :description, :time_start, :time_end)
   end
 
   def item_params

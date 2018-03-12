@@ -1,0 +1,34 @@
+<h1>MenuItems#create</h1>
+<p>Find me in app/views/menu_items/new.html.erb</p>
+
+<%= simple_form_for(@menu_item) do |item|  %>
+  <div class="menu_item" style="border: 1px solid blue; padding-left: 30px; padding-right: 30px">
+    <%= item.input :name %>
+    <%= item.input :description %>
+    <%= item.input :id, input_html: { value: MenuItem.count + 1, :readonly => true } %>
+    <%= item.input :menu_id, input_html: { value: Menu.last.id, :readonly => true } %>
+
+    <!-- # Still need to add Category Select -->
+
+    <%#= item.select :menu_category_id, @category_names, {} %>
+
+    <!-- ################################### -->
+
+    <%= item.simple_fields_for :menu_categories do |category| %>
+      <%= category.select :menu_category_id, :collection => 1..10 %>
+    <% end %>
+
+    <%= item.button :submit, "Make a New One", class: "btn btn-primary"%>
+  <%# end %>
+
+
+  <%# simple_fields_for(@menu.menu_categories) do |category|  %>
+    <%#= category.simple_fields_for :menu_categories do |category| %>
+      <%#= category.select :category, :collection => @category_names %>
+    <%# end %>
+
+    <%#= menu.simple_fields_for :menu_subcategories do |subcategory| %>
+      <%#= subcategory.select :subcategory, :collection => @subcategory_names %>
+    <%# end %>
+  <% end %>
+</div>

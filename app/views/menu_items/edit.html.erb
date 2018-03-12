@@ -5,19 +5,20 @@
   <div class="menu_item" style="border: 1px solid blue;">
     <%= item.input :name %>
     <%= item.input :description %>
-    <%= item.input :id %>
-
+    <%= item.input :id, input_html: { value: @menu_item.id, :readonly => true } %>
+    <%= item.association :menu_category, :collection => @category_names%>
     <%= item.button :submit, "Update Item", class: "btn btn-primary"%>
   <% end %>
 
-  <% simple_form_for(@menu) do |menu|  %>
-    <%= menu.simple_fields_for :menu_categories do |category| %>
-      <%= category.select :category, :collection => @category_names %>
-    <% end %>
+  <%# simple_form_for(@menu) do |menu|  %>
+    <%#= menu.simple_fields_for :menu_categories do |category| %>
+      <%#= category.select :category, :collection => @category_names %>
+    <%# end %>
 
-    <%= menu.simple_fields_for :menu_subcategories do |subcategory| %>
-      <%= subcategory.select :subcategory, :collection => @subcategory_names %>
-    <% end %>
-  <% end %>
+    <%#= menu.simple_fields_for :menu_subcategories do |subcategory| %>
+      <%#= subcategory.select :subcategory, subcategory_names, {} %>
+    <%# end %>
+     <%#= f.select :category, event_categories_for_select, {}, class: "form-control" %>
+  <%# end %>
 </div>
 

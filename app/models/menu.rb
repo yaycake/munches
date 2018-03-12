@@ -7,5 +7,5 @@ class Menu < ApplicationRecord
   has_many :menu_items
 
   accepts_nested_attributes_for :menu_items
-  validates :name, presence: true
+  validates :name, :description, presence: true
 end

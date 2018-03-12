@@ -5,8 +5,8 @@
 
   <% @orders.each do |order| %>
     <strong>Muncher </strong>
-    <%= order.user.first_name %>
-    <%= order.user.last_name %>
+    <%#= order.user.first_name %>
+    <%#= order.user.last_name %>
     </br>
     <strong>at address:</strong></br>
     <%= order.address_id %> </br>
@@ -27,6 +27,7 @@
     <%= order.order_status %> </br>
     <%= order.address_id %> </br>
     <%= order.time_ordered  %> </br>
+    <a href="">Change status of order here</a>
   <% end %>
 
 </div>

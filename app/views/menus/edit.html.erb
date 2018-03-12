@@ -1,7 +1,7 @@
 <h1>Menus#edit</h1>
 <p>Find me in app/views/menus/edit.html.erb</p>
 
-
+<div style="padding-left: 30px">
 <%= simple_form_for(@menu) do |menu| %>
   <%= menu.input :name, placeholder: "name", label: false %>
   <%= menu.input :description, label: false %>
@@ -12,18 +12,20 @@
   <%= menu.input :time_start %>
   <%= menu.input :time_end %>
   <%= menu.input :days_available%>
-  <%= menu.association :menu_categories, :collection => @category_names, prompt: "Choose a Category"%>
+  <%= menu.association :menu_categories, :collection => @category_names%>
+   <%#= menu.select :menu_categories, @category_names, {}, class: "form-control" %>
+
 
   <%= menu.button :submit, "Update Menu", class: "btn btn-primary"%>
   <%end%>
   <!-- - - - - - menu items test -->
-
+  <%= link_to "Add New Item", new_menu_item_path, class: "btn btn-success" %>
   <h4> Menu Items </h4>
     <% @menu.menu_items.each do |item| %>
       <%= link_to "#{item.name}", edit_menu_item_path(item) %>
       <br>
   <%end%>
-
+</div>
 
  <!-- RENDER THE MENU ITEM PARTIAL -->
 
