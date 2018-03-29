@@ -15,7 +15,7 @@
     <!-- ################################### -->
 
     <%= item.simple_fields_for :menu_categories do |category| %>
-      <%= category.select :menu_category_id, :collection => 1..10 %>
+      <%= category.select :menu_category_id, :collection => @category_names %>
     <% end %>
 
     <%= item.button :submit, "Make a New One", class: "btn btn-primary"%>

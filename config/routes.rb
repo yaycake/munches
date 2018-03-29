@@ -32,6 +32,8 @@ resources :menu_items
   get 'orders/edit', to: "orders#edit"
   get 'orders/delete', to: "orders#delete"
 
+
+
   # patch 'menus/update', to: "menus#update"
 
 resources :menus do
@@ -62,23 +64,11 @@ end
       resources :menu_subcategories, only: [ :index, :show ]
       resources :menu_items, only: [:index, :show]
       resources :users, only: [ :index, :show ]
+      post 'request', to: "signatures#receive_params"
     end
   end
 
 end
 
-#   namespace :api, defaults: { format: :json } do
-#     namespace :v1 do
-#       resources :orders, only: [ :index, :show ]
-#       resources :menus, only: [ :index, :show ]
-#       resources :menu_categories, only: [ :index, :show ]
-#       resources :menu_subcategories, only: [ :index, :show ]
-#       resources :menu_items, only: [:index, :show]
-#       resources :users, only: [ :index, :show ]
-#     end
-
-#   end
-
-# end
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
